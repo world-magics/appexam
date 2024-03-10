@@ -24,37 +24,37 @@
     <!-- Contact Start -->
     <div class="container-fluid py-5">
         <div class="container">
-            <div class="row align-items-end mb-4">
-                <div class="col-lg-6">
-                    <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Create Post</h6>
-                    <h1 class="section-title mb-3">Create post For Cleaning Services</h1>
-                </div>
-                <div class="col-lg-6">
-                    <h4 class="font-weight-normal text-muted mb-3">Eirmod kasd duo eos et magna, diam dolore stet sea clita sit ea erat lorem. Ipsum eos ipsum magna lorem stet</h4>
-                </div>
-            </div>
+        
             <div class="row">
-                <div class="col-lg-7 mb-5 mb-lg-0">
+                <div class="col-lg-12 mb-5 mb-lg-0">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="sentMessage" id="contactForm" method='post' action="{{ route('posts.store') }}">
+                            @csrf
                             <div class="form-row">
                                 <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="text"  class="form-control p-4" id="subject" placeholder="Post title" 
+                                     name='title' value="{{ old('title') }}"/>
+                                    @error('title')
+                                     <p class="help-block text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="col-sm-6 control-group">
-                                    <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
-                                    <p class="help-block text-danger"></p>
+                                    <input type="text" class="form-control p-4" value="{{ old('short_content') }}" id="message" name='short_content' placeholder="Short title"  data-validation-required-message="Please enter your email" />
+                                     @error('short_content')
+                                     <p class="help-block text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                            {{-- <div class="control-group">
+                                <input type="file" class="form-control p-4" id="subject" placeholder="Image"  data-validation-required-message="Please enter a subject" />
                                 <p class="help-block text-danger"></p>
-                            </div>
+                            </div> --}}
                             <div class="control-group">
-                                <textarea class="form-control p-4" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
-                                <p class="help-block text-danger"></p>
+                                <textarea class="form-control p-4" rows="6" value="{{ old('content') }}" id="message" name='content' placeholder="Content"  data-validation-required-message="Please enter your message"></textarea>
+                                @error('content')
+                                     <p class="help-block text-danger">{{ $message }}</p>
+                                    @enderror
                             </div>
                             <div>
                                 <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
