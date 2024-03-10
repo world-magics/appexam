@@ -37,7 +37,7 @@
                 @foreach ($posts as $post)
                 <div class="col-lg-4 col-md-6 mb-5">
                     <div class="position-relative mb-4">
-                        <img class="img-fluid rounded w-100" src="  img/blog-1.jpg" alt="">
+                        <img class="img-fluid rounded w-100" src="storage/{{ $post->photo }}" alt="image">
                         <div class="blog-date">
                             <h4 class="font-weight-bold mb-n1">{{ $post->created_at }}</h4>
                             <small class="text-white text-uppercase">Jan</small>

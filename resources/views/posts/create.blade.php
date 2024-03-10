@@ -29,7 +29,7 @@
                 <div class="col-lg-12 mb-5 mb-lg-0">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" method='post' action="{{ route('posts.store') }}">
+                        <form enctype="multipart/form-data" name="sentMessage" id="contactForm" method='post' action="{{ route('posts.store') }}">
                             @csrf
                             <div class="form-row">
                                 <div class="col-sm-6 control-group">
@@ -46,15 +46,17 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="control-group">
-                                <input type="file" class="form-control p-4" id="subject" placeholder="Image"  data-validation-required-message="Please enter a subject" />
-                                <p class="help-block text-danger"></p>
-                            </div> --}}
+                            <div class="control-group">
+                                <input type="file" name="photo" class="form-control p-4" id="subject"  />
+                                @error('photo')
+                                     <p class="help-block text-danger">{{ $message }}</p>
+                                @enderror
+                            </div> 
                             <div class="control-group">
                                 <textarea class="form-control p-4" rows="6" value="{{ old('content') }}" id="message" name='content' placeholder="Content"  data-validation-required-message="Please enter your message"></textarea>
                                 @error('content')
                                      <p class="help-block text-danger">{{ $message }}</p>
-                                    @enderror
+                                @enderror
                             </div>
                             <div>
                                 <button class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
