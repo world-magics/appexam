@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="mb-5">
-                    <img class="img-fluid rounded w-100 mb-4" src="img/carousel-1.jpg" alt="Image">
+                    <img class="img-fluid rounded w-100" src="{{asset('storage/'.$post->photo )}}" alt="image">
                     <p>{{ $post->content }}</p>
                 </div>
 
