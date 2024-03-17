@@ -24,8 +24,22 @@
 <!-- Detail Start -->
 <div class="container-fluid py-5">
     <div class="container">
+        <div>
+        </div>
         <div class="row">
             <div class="col-lg-8">
+                <a href="{{ route('posts.edit',['post'=>$post->id]) }}" 
+                class="btn btn-sm btn-outline-secondary">
+                Change Post
+                </a>
+                <form action="{{ route('posts.destroy',['post'=> $post->id]) }}"
+                     method="POST"
+                     onsubmit="return confirm('do you want delete this post?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                </form>
+               
                 <div class="mb-5">
                     <div class="d-flex mb-2">
                         <a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a>
@@ -144,13 +158,13 @@
                     </ul>
                 </div>
                 <div class="mb-5">
-                    <img src="img/blog-1.jpg" alt="" class="img-fluid rounded">
+                    <img src="{{asset('storage/'.$post->photo )}}" alt="" class="img-fluid rounded">
                 </div>
                 <div class="mb-5">
                     <h3 class="mb-4 section-title">Recent Post</h3>
                     @foreach ($recent_posts as $recent_post )
                     <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                        <img class="img-fluid rounded" src="img/blog-1.jpg" style="width: 80px; height: 80px; object-fit: cover;" alt="">
+                        <img class="img-fluid rounded" src="{{asset('storage/'.$post->photo )}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
                         <div class="d-flex flex-column pl-3">
                             <a class="text-dark mb-2" href="">{{ $recent_post->title }}</a>
                             <div class="d-flex">
@@ -167,7 +181,7 @@
 
                 </div>
                 <div class="mb-5">
-                    <img src="img/blog-2.jpg" alt="" class="img-fluid rounded">
+                    <img src="{{asset('storage/'.$post->photo )}}" alt="" class="img-fluid rounded">
                 </div>
                 <div class="mb-5">
                     <h3 class="mb-4 section-title">Tag Cloud</h3>
@@ -181,7 +195,7 @@
                     </div>
                 </div>
                 <div class="mb-5">
-                    <img src="img/blog-3.jpg" alt="" class="img-fluid rounded">
+                    <img src="{{asset('storage/'.$post->photo )}}" alt="" class="img-fluid rounded">
                 </div>
                 <div>
                     <h3 class="mb-4 section-title">Plain Text</h3>
